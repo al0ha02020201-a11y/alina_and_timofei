@@ -2,10 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Тимофей & Алина — приглашение на свадьбу</title>
 
-  <!-- Font: Cormorant -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,28 +19,45 @@
       --wine:#6b0f1a;
       --wine2:#8d1423;
 
-      --shadow: 0 24px 60px rgba(0,0,0,.55);
+      --shadow: 0 24px 60px rgba(0,0,0,.45);
       --radius: 28px;
       --radius2: 20px;
 
-      /* dress palette */
       --dc1:#e7d0bf; --dc2:#cbceb8; --dc4:#d3ad9c;
       --dc5:#ad7c62; --dc6:#677266; --dc7:#414b44;
       --dc8:#e7c3c6; --dc9:#bcd3e6;
+
+      --container: 1200px;
+      --phone-max: 430px;
+      --space-xs: clamp(8px, 1vw, 12px);
+      --space-sm: clamp(12px, 1.5vw, 16px);
+      --space-md: clamp(16px, 2vw, 22px);
+      --space-lg: clamp(20px, 3vw, 36px);
+      --space-xl: clamp(28px, 4vw, 56px);
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    html,body{
+      min-height:100%;
+    }
+
     body{
       margin:0;
       font-family:"Cormorant", serif;
       color:#fff;
-      background: radial-gradient(1200px 900px at 70% -10%, rgba(141,20,35,.28), transparent 55%),
-                  radial-gradient(900px 700px at 10% 10%, rgba(107,15,26,.20), transparent 55%),
-                  linear-gradient(180deg, #070606 0%, #0f0c0c 45%, #070606 100%);
+      background:
+        radial-gradient(1200px 900px at 70% -10%, rgba(141,20,35,.28), transparent 55%),
+        radial-gradient(900px 700px at 10% 10%, rgba(107,15,26,.20), transparent 55%),
+        linear-gradient(180deg, #070606 0%, #0f0c0c 45%, #070606 100%);
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
     }
 
-    /* background image */
     body::before{
       content:"";
       position: fixed;
@@ -51,143 +67,192 @@
       opacity:.22;
       z-index:-2;
       transform: scale(1.06);
+      will-change: transform;
     }
+
     body::after{
       content:"";
       position: fixed;
       inset:0;
-      background: radial-gradient(900px 700px at 50% 10%, rgba(255,255,255,.08), transparent 60%),
-                  linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.72));
+      background:
+        radial-gradient(900px 700px at 50% 10%, rgba(255,255,255,.08), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.72));
       z-index:-1;
     }
 
-    a{ color:inherit; text-decoration:none; }
-
-    .wrap{
-      width:min(760px, 92vw);
-      margin:0 auto;
-      padding: 18px 0 70px;
+    img{
+      max-width:100%;
+      display:block;
     }
 
-    /* header */
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .wrap{
+      width:min(var(--container), calc(100vw - 24px));
+      margin:0 auto;
+      padding:
+        max(14px, env(safe-area-inset-top))
+        0
+        max(40px, env(safe-area-inset-bottom));
+    }
+
     .topbar{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:12px;
-      padding: 8px 4px 16px;
+      gap:14px;
+      padding: 8px 4px 18px;
       opacity:.96;
+      flex-wrap:wrap;
     }
+
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      letter-spacing: 1.2px;
-      font-weight: 600;
-      font-size: 18px;
+      letter-spacing:1.2px;
+      font-weight:600;
+      font-size:clamp(18px, 2vw, 22px);
+      flex-shrink:0;
     }
+
     .dot{
-      width:10px;height:10px;border-radius:999px;
+      width:10px;
+      height:10px;
+      border-radius:999px;
       background: var(--wine2);
       box-shadow: 0 0 0 6px rgba(141,20,35,.16);
     }
+
     nav{
       display:flex;
       gap:10px;
       flex-wrap:wrap;
       justify-content:flex-end;
-      font-size: 16px;
-      opacity:.9;
+      font-size:clamp(15px, 1.6vw, 18px);
+      opacity:.92;
     }
+
     nav a{
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
+      padding: 8px 12px;
+      border-radius:999px;
+      border:1px solid transparent;
       transition: .2s ease;
+      background: rgba(255,255,255,.03);
+      min-height:42px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
     }
+
     nav a:hover{
       border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
+      background: rgba(255,255,255,.08);
     }
 
-    /* PHONE STACK (always one column) */
     .phones{
-      display:flex;
-      flex-direction:column;
-      gap: 18px;
-      align-items:center;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: clamp(18px, 3vw, 28px);
+      justify-items:center;
+      align-items:start;
     }
 
-    /* the phone card width is fixed-ish like a phone screen */
-    .phone{
-      width: min(410px, 92vw);
+    .phone,
+    .shot{
+      width:min(100%, var(--phone-max));
       border-radius: var(--radius);
       overflow:hidden;
       box-shadow: var(--shadow);
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
+      backdrop-filter: blur(4px);
     }
 
-    /* silk header */
     .silkHead{
       position:relative;
-      height: 210px;
+      min-height: clamp(180px, 32vw, 230px);
       background: url("загруженное.jpeg") center/cover no-repeat;
       filter: contrast(1.06) saturate(1.08);
+      display:flex;
+      align-items:flex-start;
     }
+
     .silkHead::after{
       content:"";
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background: linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.45) 55%, rgba(0,0,0,.55) 100%);
     }
+
     .silkHead .headText{
-      position:absolute;
-      inset: 18px 18px auto 18px;
-      z-index: 1;
+      position:relative;
+      z-index:1;
+      width:100%;
+      padding: clamp(16px, 4vw, 24px);
     }
+
     .silkHead .headText h1,
     .silkHead .headText h2{
       margin:0;
       font-weight:500;
       letter-spacing:.6px;
+      text-wrap:balance;
     }
-    .silkHead .headText h1{ font-size: 38px; }
-    .silkHead .headText h2{ font-size: 34px; line-height:1.05; }
+
+    .silkHead .headText h1{
+      font-size: clamp(30px, 7vw, 42px);
+      line-height:1.05;
+    }
+
+    .silkHead .headText h2{
+      font-size: clamp(30px, 7vw, 38px);
+      line-height:1.05;
+    }
+
     .silkHead .headText .sub{
-      margin-top: 8px;
-      font-size: 15px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
+      margin-top:8px;
+      font-size: clamp(13px, 2.5vw, 15px);
+      letter-spacing:1.2px;
+      text-transform:uppercase;
       opacity:.9;
     }
+
     .silkHead .headText .date{
-      margin-top: 6px;
-      font-size: 20px;
-      letter-spacing: 2px;
+      margin-top:6px;
+      font-size: clamp(18px, 4vw, 22px);
+      letter-spacing:2px;
       opacity:.95;
     }
 
-    /* paper body */
     .paper{
       background: var(--paper);
       color: var(--ink);
-      padding: 18px 18px 20px;
+      padding: clamp(16px, 4vw, 22px);
     }
 
     .centerNote{
       text-align:center;
-      font-size: 18px;
+      font-size: clamp(18px, 3.8vw, 22px);
       line-height:1.22;
       color: rgba(36,29,29,.82);
-      margin: 8px 0 14px;
+      margin: 10px 0 14px;
+      text-wrap:balance;
     }
+
     .sectionTitle{
       text-align:center;
-      font-size: 34px;
-      font-weight: 600;
+      font-size: clamp(30px, 6vw, 36px);
+      font-weight:600;
       margin: 12px 0 10px;
       letter-spacing:.6px;
+      line-height:1.05;
+      text-wrap:balance;
     }
+
     .divider{
       height:1px;
       background: rgba(0,0,0,.08);
@@ -195,73 +260,84 @@
     }
 
     .photoFrame{
-      width: 100%;
+      width:100%;
       background: rgba(255,255,255,.65);
-      border-radius: 18px;
-      padding: 12px;
+      border-radius:18px;
+      padding: clamp(8px, 2vw, 12px);
       border: 1px solid rgba(0,0,0,.06);
       box-shadow: 0 16px 38px rgba(0,0,0,.18);
     }
+
     .photoFrame img{
       width:100%;
-      height:auto;
-      display:block;
-      border-radius: 14px;
+      aspect-ratio: 4 / 5;
+      object-fit:cover;
+      border-radius:14px;
       filter: grayscale(1) contrast(1.02);
     }
 
-    /* calendar */
     .calendarWrap{
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 10px;
-      margin-top: 8px;
+      gap:10px;
+      margin-top:8px;
+      width:100%;
     }
+
     .calHead{
       text-align:center;
-      font-size: 18px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
+      font-size: clamp(17px, 3vw, 19px);
+      letter-spacing:1.2px;
+      text-transform:uppercase;
       color: rgba(36,29,29,.72);
     }
+
     .calendar{
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 8px 8px;
-      table-layout: fixed;
+      width:100%;
+      border-collapse:separate;
+      border-spacing: clamp(4px, 1.5vw, 8px);
+      table-layout:fixed;
     }
+
     .calendar th{
-      font-weight: 600;
-      font-size: 14px;
+      font-weight:600;
+      font-size: clamp(12px, 2.5vw, 14px);
       color: rgba(36,29,29,.62);
       text-align:center;
+      padding: 2px 0;
     }
+
     .calendar td{
-      height: 32px;
+      height: clamp(34px, 8vw, 42px);
       text-align:center;
-      font-size: 16px;
+      font-size: clamp(14px, 3.2vw, 17px);
       color: rgba(36,29,29,.78);
-      border-radius: 10px;
+      border-radius:10px;
       background: rgba(255,255,255,.35);
-      border: 1px solid rgba(0,0,0,.05);
+      border:1px solid rgba(0,0,0,.05);
+      position:relative;
     }
+
     .calendar td.empty{
       background: transparent;
       border-color: transparent;
     }
+
     .calendar td.heart{
-      position:relative;
       background: rgba(255,255,255,.55);
-      font-weight: 700;
+      font-weight:700;
       color: rgba(107,15,26,.92);
       border-color: rgba(107,15,26,.16);
     }
+
     .calendar td.heart::after{
       content:"";
       position:absolute;
-      left:50%; top:50%;
-      width: 42px; height: 36px;
+      left:50%;
+      top:50%;
+      width: clamp(28px, 8vw, 42px);
+      height: clamp(24px, 7vw, 36px);
       transform: translate(-50%,-52%);
       background: no-repeat center/contain;
       opacity:.95;
@@ -270,165 +346,308 @@
   <path d="M60 92 C18 66 6 46 12 30 C18 12 38 10 52 22 C56 26 58 30 60 34 C62 30 64 26 68 22 C82 10 102 12 108 30 C114 46 102 66 60 92 Z" \
     fill="none" stroke="%236b0f1a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>\
 </svg>');
+      pointer-events:none;
     }
 
-    /* Right phone inner panel (program + dresscode + details) */
     .redPanel{
-      border-radius: 22px;
+      border-radius:22px;
       overflow:hidden;
       box-shadow: 0 14px 36px rgba(0,0,0,.18);
       border: 1px solid rgba(0,0,0,.06);
     }
+
     .redTop{
       position:relative;
       background: url("загруженное.jpeg") center/cover no-repeat;
-      padding: 18px 18px 14px;
+      padding: clamp(16px, 4vw, 20px);
       color:#fff;
     }
+
     .redTop::after{
       content:"";
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.52));
     }
-    .redTop > *{ position:relative; z-index:1; }
+
+    .redTop > *{
+      position:relative;
+      z-index:1;
+    }
 
     .redTop h3{
       margin:0;
       text-align:center;
-      font-size: 30px;
-      font-weight: 600;
+      font-size: clamp(28px, 6vw, 32px);
+      font-weight:600;
       letter-spacing:.6px;
+      line-height:1.05;
     }
 
     .prog{
-      margin-top: 14px;
+      margin-top:14px;
       display:grid;
-      gap: 10px;
+      gap:10px;
     }
+
     .progItem{
       display:grid;
-      grid-template-columns: 68px 1fr;
-      gap: 12px;
+      grid-template-columns: minmax(60px, 72px) 1fr;
+      gap:12px;
       align-items:flex-start;
-      padding: 10px 10px;
-      border-radius: 16px;
+      padding: 12px;
+      border-radius:16px;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.12);
     }
+
     .progTime{
-      font-weight: 700;
-      font-size: 20px;
+      font-weight:700;
+      font-size: clamp(18px, 4vw, 21px);
       letter-spacing:1px;
       text-align:left;
+      white-space:nowrap;
     }
+
     .progText{
-      font-size: 18px;
+      font-size: clamp(17px, 3.8vw, 19px);
       line-height:1.15;
       opacity:.95;
     }
 
+    .progText span{
+      opacity:.85;
+      font-size: clamp(15px, 3vw, 16px);
+      display:block;
+      margin-top:2px;
+    }
+
     .paperBlock{
       background: var(--paper2);
-      padding: 16px 18px 18px;
+      padding: clamp(16px, 4vw, 20px);
       color: var(--ink);
     }
+
     .paperBlock h4{
       margin: 2px 0 8px;
       text-align:center;
-      font-size: 32px;
-      font-weight: 600;
+      font-size: clamp(28px, 6vw, 34px);
+      font-weight:600;
       letter-spacing:.6px;
+      line-height:1.05;
     }
+
     .paperBlock p{
       margin:0;
-      font-size: 18px;
+      font-size: clamp(18px, 3.8vw, 20px);
       line-height:1.22;
       color: rgba(36,29,29,.82);
       text-align:center;
+      text-wrap:balance;
     }
 
     .swatches{
       display:flex;
       justify-content:center;
-      gap: 10px;
+      gap:10px;
       flex-wrap:wrap;
-      margin-top: 12px;
+      margin-top:12px;
     }
+
     .swatch{
-      width: 22px; height: 22px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.18);
+      width: clamp(22px, 5vw, 26px);
+      height: clamp(22px, 5vw, 26px);
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.18);
       box-shadow: 0 8px 16px rgba(0,0,0,.10);
+      flex: 0 0 auto;
     }
 
     .detailsList{
-      margin-top: 12px;
+      margin-top:12px;
       display:grid;
-      gap: 10px;
+      gap:10px;
     }
+
     .detailCard{
       background: rgba(255,255,255,.55);
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: 18px;
+      border:1px solid rgba(0,0,0,.06);
+      border-radius:18px;
       padding: 12px 14px;
       color: rgba(36,29,29,.86);
+      font-size: clamp(17px, 3.8vw, 19px);
+      line-height:1.2;
     }
-    .detailCard b{ color: rgba(36,29,29,.92); }
+
+    .detailCard b{
+      color: rgba(36,29,29,.92);
+    }
 
     .btnRow{
       display:flex;
       justify-content:center;
-      gap: 10px;
+      gap:10px;
       flex-wrap:wrap;
-      margin-top: 12px;
+      margin-top:12px;
     }
+
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       gap:10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.14);
+      padding: 14px 18px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,.14);
       background: rgba(255,255,255,.65);
       color: rgba(36,29,29,.9);
       cursor:pointer;
       transition: .2s ease;
-      font-size: 18px;
-      line-height: 1;
+      font-size: clamp(17px, 3.6vw, 19px);
+      line-height:1.1;
       box-shadow: 0 12px 24px rgba(0,0,0,.10);
-      width: 100%;
+      width:100%;
+      min-height:52px;
+      text-align:center;
     }
-    .btn:hover{ transform: translateY(-1px); background:#fff; }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      background:#fff;
+    }
+
     .btn.primary{
       background: linear-gradient(135deg, rgba(141,20,35,.95), rgba(107,15,26,.95));
       color:#fff;
       border-color: rgba(0,0,0,.12);
     }
 
-    /* bottom invites (optional) */
     .bottom{
-      margin-top: 18px;
+      margin-top:18px;
       display:flex;
       flex-direction:column;
       align-items:center;
-      gap: 14px;
+      gap:14px;
+      width:100%;
     }
-    .shot{
-      width: min(410px, 92vw);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+
+    .shot img{
+      width:100%;
+      height:auto;
+      display:block;
     }
-    .shot img{ width:100%; height:auto; display:block; }
 
     footer{
-      margin-top: 18px;
+      margin-top: 4px;
       text-align:center;
       opacity:.82;
-      font-size: 18px;
+      font-size: clamp(17px, 3.6vw, 20px);
+      padding: 6px 12px 0;
+      text-wrap:balance;
+    }
+
+    /* very small phones */
+    @media (max-width: 380px){
+      .wrap{
+        width:min(var(--container), calc(100vw - 14px));
+      }
+
+      .paper,
+      .paperBlock,
+      .redTop{
+        padding:14px;
+      }
+
+      .progItem{
+        grid-template-columns: 1fr;
+        gap:6px;
+      }
+
+      .progTime{
+        text-align:left;
+      }
+
+      nav{
+        width:100%;
+        justify-content:center;
+      }
+
+      nav a{
+        flex:1 1 auto;
+      }
+    }
+
+    /* phones / small tablets */
+    @media (min-width: 481px){
+      .btn{
+        width:auto;
+        min-width: 240px;
+      }
+    }
+
+    /* tablets */
+    @media (min-width: 768px){
+      .wrap{
+        width:min(var(--container), calc(100vw - 40px));
+        padding-top: 22px;
+      }
+
+      .topbar{
+        padding-bottom: 24px;
+      }
+
+      .phones{
+        grid-template-columns: repeat(2, minmax(300px, var(--phone-max)));
+        justify-content:center;
+      }
+
+      .bottom{
+        grid-column: 1 / -1;
+      }
+
+      footer{
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* laptops / desktops */
+    @media (min-width: 1024px){
+      body::before{
+        filter: blur(12px) saturate(1.05) contrast(1.05);
+      }
+
+      .phones{
+        gap: 32px;
+      }
+
+      .phone:hover{
+        transform: translateY(-2px);
+        transition: transform .25s ease;
+      }
+    }
+
+    /* reduce expensive effects on mobile if needed */
+    @media (max-width: 767px){
+      body::before{
+        filter: blur(8px) saturate(1.02) contrast(1.02);
+      }
+
+      .phone,
+      .shot{
+        backdrop-filter:none;
+      }
+    }
+
+    /* accessibility */
+    @media (prefers-reduced-motion: reduce){
+      html{
+        scroll-behavior:auto;
+      }
+
+      *{
+        transition:none !important;
+        animation:none !important;
+      }
     }
   </style>
 </head>
@@ -440,6 +659,7 @@
         <span class="dot" aria-hidden="true"></span>
         <span>Т & А</span>
       </div>
+
       <nav>
         <a href="#invite">Приглашение</a>
         <a href="#program">Программа</a>
@@ -448,7 +668,6 @@
     </header>
 
     <section class="phones" id="invite">
-      <!-- PHONE 1 -->
       <article class="phone">
         <div class="silkHead">
           <div class="headText">
@@ -460,7 +679,7 @@
 
         <div class="paper">
           <div class="photoFrame">
-            <img src="x6LzUsCLJCBgfnHGzKnsSCliFL4d1y7Okfpct-Zivsgn4Vev5tSv2hr2oSczQ96wi_NycPziQpgXycq4kQG7NNU5.jpg" alt="Фото пары">
+            <img src="x6LzUsCLJCBgfnHGzKnsSCliFL4d1y7Okfpct_Zivsgn4Vev5tSv2hr2oSczQ96wi.jpg" alt="Фото пары" loading="lazy">
           </div>
 
           <div class="centerNote">
@@ -502,16 +721,18 @@
 
           <div class="sectionTitle">Место проведения</div>
           <div class="centerNote" style="margin-top:6px;">
-            <b>Ресторан 'Mirano'</b><br>
+            <b>Ресторан “Mirano”</b><br>
             Юганский проезд, 4
           </div>
+
           <div class="btnRow">
-            <a class="btn" href="https://go.2gis.com/kal6k" target="_blank" rel="noopener">📍 Открыть в 2ГИС</a>
+            <a class="btn" href="https://go.2gis.com/kal6k" target="_blank" rel="noopener">
+              📍 Открыть в 2ГИС
+            </a>
           </div>
         </div>
       </article>
 
-      <!-- PHONE 2 -->
       <article class="phone" id="program">
         <div class="silkHead">
           <div class="headText">
@@ -527,15 +748,25 @@
               <div class="prog">
                 <div class="progItem">
                   <div class="progTime">17:30</div>
-                  <div class="progText">Сбор гостей ♥<br><span style="opacity:.85;font-size:16px;">Просим взять с собой хорошее настроение</span></div>
+                  <div class="progText">
+                    Сбор гостей ♥
+                    <span>Просим взять с собой хорошее настроение</span>
+                  </div>
                 </div>
+
                 <div class="progItem">
                   <div class="progTime">18:00</div>
-                  <div class="progText">Начало ♥<br><span style="opacity:.85;font-size:16px;">Торжественная часть / банкет</span></div>
+                  <div class="progText">
+                    Начало ♥
+                    <span>Торжественная часть / банкет</span>
+                  </div>
                 </div>
+
                 <div class="progItem">
                   <div class="progTime">00:00</div>
-                  <div class="progText">Конец ♥<br></div>
+                  <div class="progText">
+                    Конец ♥
+                  </div>
                 </div>
               </div>
             </div>
@@ -543,6 +774,7 @@
             <div class="paperBlock" id="rsvp">
               <h4>Дресс-код</h4>
               <p>Нам будет очень приятно, если вы поддержите цвета вечера.</p>
+
               <div class="swatches" aria-label="Палитра дресс-кода">
                 <span class="swatch" style="background:var(--dc1)"></span>
                 <span class="swatch" style="background:var(--dc2)"></span>
@@ -550,8 +782,8 @@
                 <span class="swatch" style="background:var(--dc5)"></span>
                 <span class="swatch" style="background:var(--dc6)"></span>
                 <span class="swatch" style="background:var(--dc7)"></span>
-		<span class="swatch" style="background:var(--dc8)"></span>
-		<span class="swatch" style="background:var(--dc9)"></span>
+                <span class="swatch" style="background:var(--dc8)"></span>
+                <span class="swatch" style="background:var(--dc9)"></span>
               </div>
 
               <div class="detailsList">
@@ -561,22 +793,25 @@
               </div>
 
               <div class="btnRow">
-                <a class="btn primary" href="https://docs.google.com/forms/d/1k_Hoc64JNEx17U8R8VIKkiCip33KroVTPN9N7Ga2CQM/viewform?edit_requested=true" target="_blank" rel="noopener">
+                <a
+                  class="btn primary"
+                  href="https://docs.google.com/forms/d/1k_Hoc64JNEx17U8R8VIKkiCip33KroVTPN9N7Ga2CQM/viewform?edit_requested=true"
+                  target="_blank"
+                  rel="noopener"
+                >
                   ✅ Подтвердить присутствие
                 </a>
               </div>
 
-              <p style="margin-top:10px; font-size:16px; opacity:.75; text-align:center;">
-              </p>
+              <p style="margin-top:10px; font-size:16px; opacity:.75; text-align:center;"></p>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- Optional bottom invite images (можно удалить если не нужно) -->
       <div class="bottom">
-
-      <footer>Тимофей & Алина · 26 · 06 · 2026 · Mirano</footer>
+        <footer>Тимофей & Алина · 26 · 06 · 2026 · Mirano</footer>
+      </div>
     </section>
   </div>
 </body>
