@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Тимофей & Алина — приглашение на свадьбу</title>
+
+  <!-- Font: Cormorant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0909;
+      --paper:#f3e7dd;
+      --paper2:#efe1d6;
+      --ink:#241d1d;
+
+      --wine:#6b0f1a;
+      --wine2:#8d1423;
+
+      --shadow: 0 24px 60px rgba(0,0,0,.55);
+      --radius: 28px;
+      --radius2: 20px;
+
+      /* dress palette */
+      --dc1:#e7d0bf; --dc2:#cbceb8; --dc4:#d3ad9c;
+      --dc5:#ad7c62; --dc6:#677266; --dc7:#414b44;
+      --dc8:#e7c3c6; --dc9:#bcd3e6;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Cormorant", serif;
+      color:#fff;
+      background: radial-gradient(1200px 900px at 70% -10%, rgba(141,20,35,.28), transparent 55%),
+                  radial-gradient(900px 700px at 10% 10%, rgba(107,15,26,.20), transparent 55%),
+                  linear-gradient(180deg, #070606 0%, #0f0c0c 45%, #070606 100%);
+    }
+
+    /* background image */
+    body::before{
+      content:"";
+      position: fixed;
+      inset:-40px;
+      background: url("загруженное.jpeg") center/cover no-repeat;
+      filter: blur(10px) saturate(1.05) contrast(1.05);
+      opacity:.22;
+      z-index:-2;
+      transform: scale(1.06);
+    }
+    body::after{
+      content:"";
+      position: fixed;
+      inset:0;
+      background: radial-gradient(900px 700px at 50% 10%, rgba(255,255,255,.08), transparent 60%),
+                  linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.72));
+      z-index:-1;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .wrap{
+      width:min(760px, 92vw);
+      margin:0 auto;
+      padding: 18px 0 70px;
+    }
+
+    /* header */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 8px 4px 16px;
+      opacity:.96;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      letter-spacing: 1.2px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--wine2);
+      box-shadow: 0 0 0 6px rgba(141,20,35,.16);
+    }
+    nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      font-size: 16px;
+      opacity:.9;
+    }
+    nav a{
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+    nav a:hover{
+      border-color: rgba(255,255,255,.16);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* PHONE STACK (always one column) */
+    .phones{
+      display:flex;
+      flex-direction:column;
+      gap: 18px;
+      align-items:center;
+    }
+
+    /* the phone card width is fixed-ish like a phone screen */
+    .phone{
+      width: min(410px, 92vw);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* silk header */
+    .silkHead{
+      position:relative;
+      height: 210px;
+      background: url("загруженное.jpeg") center/cover no-repeat;
+      filter: contrast(1.06) saturate(1.08);
+    }
+    .silkHead::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.20) 0%, rgba(0,0,0,.45) 55%, rgba(0,0,0,.55) 100%);
+    }
+    .silkHead .headText{
+      position:absolute;
+      inset: 18px 18px auto 18px;
+      z-index: 1;
+    }
+    .silkHead .headText h1,
+    .silkHead .headText h2{
+      margin:0;
+      font-weight:500;
+      letter-spacing:.6px;
+    }
+    .silkHead .headText h1{ font-size: 38px; }
+    .silkHead .headText h2{ font-size: 34px; line-height:1.05; }
+    .silkHead .headText .sub{
+      margin-top: 8px;
+      font-size: 15px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      opacity:.9;
+    }
+    .silkHead .headText .date{
+      margin-top: 6px;
+      font-size: 20px;
+      letter-spacing: 2px;
+      opacity:.95;
+    }
+
+    /* paper body */
+    .paper{
+      background: var(--paper);
+      color: var(--ink);
+      padding: 18px 18px 20px;
+    }
+
+    .centerNote{
+      text-align:center;
+      font-size: 18px;
+      line-height:1.22;
+      color: rgba(36,29,29,.82);
+      margin: 8px 0 14px;
+    }
+    .sectionTitle{
+      text-align:center;
+      font-size: 34px;
+      font-weight: 600;
+      margin: 12px 0 10px;
+      letter-spacing:.6px;
+    }
+    .divider{
+      height:1px;
+      background: rgba(0,0,0,.08);
+      margin: 14px 0;
+    }
+
+    .photoFrame{
+      width: 100%;
+      background: rgba(255,255,255,.65);
+      border-radius: 18px;
+      padding: 12px;
+      border: 1px solid rgba(0,0,0,.06);
+      box-shadow: 0 16px 38px rgba(0,0,0,.18);
+    }
+    .photoFrame img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius: 14px;
+      filter: grayscale(1) contrast(1.02);
+    }
+
+    /* calendar */
+    .calendarWrap{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .calHead{
+      text-align:center;
+      font-size: 18px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: rgba(36,29,29,.72);
+    }
+    .calendar{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 8px 8px;
+      table-layout: fixed;
+    }
+    .calendar th{
+      font-weight: 600;
+      font-size: 14px;
+      color: rgba(36,29,29,.62);
+      text-align:center;
+    }
+    .calendar td{
+      height: 32px;
+      text-align:center;
+      font-size: 16px;
+      color: rgba(36,29,29,.78);
+      border-radius: 10px;
+      background: rgba(255,255,255,.35);
+      border: 1px solid rgba(0,0,0,.05);
+    }
+    .calendar td.empty{
+      background: transparent;
+      border-color: transparent;
+    }
+    .calendar td.heart{
+      position:relative;
+      background: rgba(255,255,255,.55);
+      font-weight: 700;
+      color: rgba(107,15,26,.92);
+      border-color: rgba(107,15,26,.16);
+    }
+    .calendar td.heart::after{
+      content:"";
+      position:absolute;
+      left:50%; top:50%;
+      width: 42px; height: 36px;
+      transform: translate(-50%,-52%);
+      background: no-repeat center/contain;
+      opacity:.95;
+      background-image: url('data:image/svg+xml;utf8,\
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="100" viewBox="0 0 120 100">\
+  <path d="M60 92 C18 66 6 46 12 30 C18 12 38 10 52 22 C56 26 58 30 60 34 C62 30 64 26 68 22 C82 10 102 12 108 30 C114 46 102 66 60 92 Z" \
+    fill="none" stroke="%236b0f1a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>\
+</svg>');
+    }
+
+    /* Right phone inner panel (program + dresscode + details) */
+    .redPanel{
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: 0 14px 36px rgba(0,0,0,.18);
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .redTop{
+      position:relative;
+      background: url("загруженное.jpeg") center/cover no-repeat;
+      padding: 18px 18px 14px;
+      color:#fff;
+    }
+    .redTop::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.28), rgba(0,0,0,.52));
+    }
+    .redTop > *{ position:relative; z-index:1; }
+
+    .redTop h3{
+      margin:0;
+      text-align:center;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing:.6px;
+    }
+
+    .prog{
+      margin-top: 14px;
+      display:grid;
+      gap: 10px;
+    }
+    .progItem{
+      display:grid;
+      grid-template-columns: 68px 1fr;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 10px 10px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .progTime{
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing:1px;
+      text-align:left;
+    }
+    .progText{
+      font-size: 18px;
+      line-height:1.15;
+      opacity:.95;
+    }
+
+    .paperBlock{
+      background: var(--paper2);
+      padding: 16px 18px 18px;
+      color: var(--ink);
+    }
+    .paperBlock h4{
+      margin: 2px 0 8px;
+      text-align:center;
+      font-size: 32px;
+      font-weight: 600;
+      letter-spacing:.6px;
+    }
+    .paperBlock p{
+      margin:0;
+      font-size: 18px;
+      line-height:1.22;
+      color: rgba(36,29,29,.82);
+      text-align:center;
+    }
+
+    .swatches{
+      display:flex;
+      justify-content:center;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .swatch{
+      width: 22px; height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.18);
+      box-shadow: 0 8px 16px rgba(0,0,0,.10);
+    }
+
+    .detailsList{
+      margin-top: 12px;
+      display:grid;
+      gap: 10px;
+    }
+    .detailCard{
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.06);
+      border-radius: 18px;
+      padding: 12px 14px;
+      color: rgba(36,29,29,.86);
+    }
+    .detailCard b{ color: rgba(36,29,29,.92); }
+
+    .btnRow{
+      display:flex;
+      justify-content:center;
+      gap: 10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.14);
+      background: rgba(255,255,255,.65);
+      color: rgba(36,29,29,.9);
+      cursor:pointer;
+      transition: .2s ease;
+      font-size: 18px;
+      line-height: 1;
+      box-shadow: 0 12px 24px rgba(0,0,0,.10);
+      width: 100%;
+    }
+    .btn:hover{ transform: translateY(-1px); background:#fff; }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(141,20,35,.95), rgba(107,15,26,.95));
+      color:#fff;
+      border-color: rgba(0,0,0,.12);
+    }
+
+    /* bottom invites (optional) */
+    .bottom{
+      margin-top: 18px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 14px;
+    }
+    .shot{
+      width: min(410px, 92vw);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .shot img{ width:100%; height:auto; display:block; }
+
+    footer{
+      margin-top: 18px;
+      text-align:center;
+      opacity:.82;
+      font-size: 18px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Т & А</span>
+      </div>
+      <nav>
+        <a href="#invite">Приглашение</a>
+        <a href="#program">Программа</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+    </header>
+
+    <section class="phones" id="invite">
+      <!-- PHONE 1 -->
+      <article class="phone">
+        <div class="silkHead">
+          <div class="headText">
+            <h1>Тимофей & Алина</h1>
+            <div class="sub">Wedding day</div>
+            <div class="date">26 · 06 · 2026</div>
+          </div>
+        </div>
+
+        <div class="paper">
+          <div class="photoFrame">
+            <img src="x6LzUsCLJCBgfnHGzKnsSCliFL4d1y7Okfpct-Zivsgn4Vev5tSv2hr2oSczQ96wi_NycPziQpgXycq4kQG7NNU5.jpg" alt="Фото пары">
+          </div>
+
+          <div class="centerNote">
+            Дорогие родные и близкие, мы женимся и хотим разделить этот день с вами!
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sectionTitle">Дата</div>
+          <div class="calendarWrap">
+            <div class="calHead">Июнь · 2026</div>
+            <table class="calendar" aria-label="Календарь июнь 2026">
+              <thead>
+                <tr>
+                  <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td>
+                </tr>
+                <tr>
+                  <td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td>
+                </tr>
+                <tr>
+                  <td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td>
+                </tr>
+                <tr>
+                  <td>22</td><td>23</td><td>24</td><td>25</td><td class="heart">26</td><td>27</td><td>28</td>
+                </tr>
+                <tr>
+                  <td>29</td><td>30</td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td><td class="empty"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="sectionTitle">Место проведения</div>
+          <div class="centerNote" style="margin-top:6px;">
+            <b>Ресторан 'Mirano'</b><br>
+            Юганский проезд, 4
+          </div>
+          <div class="btnRow">
+            <a class="btn" href="https://go.2gis.com/kal6k" target="_blank" rel="noopener">📍 Открыть в 2ГИС</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PHONE 2 -->
+      <article class="phone" id="program">
+        <div class="silkHead">
+          <div class="headText">
+            <h2>Приглашение<br>на свадьбу</h2>
+          </div>
+        </div>
+
+        <div class="paper">
+          <div class="redPanel">
+            <div class="redTop">
+              <h3>Программа</h3>
+
+              <div class="prog">
+                <div class="progItem">
+                  <div class="progTime">17:30</div>
+                  <div class="progText">Сбор гостей ♥<br><span style="opacity:.85;font-size:16px;">Просим взять с собой хорошее настроение</span></div>
+                </div>
+                <div class="progItem">
+                  <div class="progTime">18:00</div>
+                  <div class="progText">Начало ♥<br><span style="opacity:.85;font-size:16px;">Торжественная часть / банкет</span></div>
+                </div>
+                <div class="progItem">
+                  <div class="progTime">00:00</div>
+                  <div class="progText">Конец ♥<br></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="paperBlock" id="rsvp">
+              <h4>Дресс-код</h4>
+              <p>Нам будет очень приятно, если вы поддержите цвета вечера.</p>
+              <div class="swatches" aria-label="Палитра дресс-кода">
+                <span class="swatch" style="background:var(--dc1)"></span>
+                <span class="swatch" style="background:var(--dc2)"></span>
+                <span class="swatch" style="background:var(--dc4)"></span>
+                <span class="swatch" style="background:var(--dc5)"></span>
+                <span class="swatch" style="background:var(--dc6)"></span>
+                <span class="swatch" style="background:var(--dc7)"></span>
+		<span class="swatch" style="background:var(--dc8)"></span>
+		<span class="swatch" style="background:var(--dc9)"></span>
+              </div>
+
+              <div class="detailsList">
+                <div class="detailCard">
+                  <b>RSVP:</b> чтобы мы всё учли, пожалуйста, отметьтесь в форме ниже.
+                </div>
+              </div>
+
+              <div class="btnRow">
+                <a class="btn primary" href="https://docs.google.com/forms/d/1k_Hoc64JNEx17U8R8VIKkiCip33KroVTPN9N7Ga2CQM/viewform?edit_requested=true" target="_blank" rel="noopener">
+                  ✅ Подтвердить присутствие
+                </a>
+              </div>
+
+              <p style="margin-top:10px; font-size:16px; opacity:.75; text-align:center;">
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Optional bottom invite images (можно удалить если не нужно) -->
+      <div class="bottom">
+
+      <footer>Тимофей & Алина · 26 · 06 · 2026 · Mirano</footer>
+    </section>
+  </div>
+</body>
+</html>
