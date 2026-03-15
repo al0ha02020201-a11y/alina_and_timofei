@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light">
   <title>Тимофей & Алина — приглашение на свадьбу</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +42,8 @@
 
     html{
       scroll-behavior:smooth;
+      color-scheme: light;
+      -webkit-text-size-adjust:100%;
     }
 
     html,body{
@@ -50,12 +54,12 @@
       margin:0;
       font-family:"Cormorant", serif;
       color:#fff;
+      background-color:#0b0909;
       background:
         radial-gradient(1200px 900px at 70% -10%, rgba(141,20,35,.28), transparent 55%),
         radial-gradient(900px 700px at 10% 10%, rgba(107,15,26,.20), transparent 55%),
         linear-gradient(180deg, #070606 0%, #0f0c0c 45%, #070606 100%);
       overflow-x:hidden;
-      -webkit-text-size-adjust:100%;
     }
 
     body::before{
@@ -68,6 +72,7 @@
       z-index:-2;
       transform: scale(1.06);
       will-change: transform;
+      pointer-events:none;
     }
 
     body::after{
@@ -78,6 +83,7 @@
         radial-gradient(900px 700px at 50% 10%, rgba(255,255,255,.08), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.72));
       z-index:-1;
+      pointer-events:none;
     }
 
     img{
@@ -125,6 +131,7 @@
       border-radius:999px;
       background: var(--wine2);
       box-shadow: 0 0 0 6px rgba(141,20,35,.16);
+      forced-color-adjust:none;
     }
 
     nav{
@@ -170,6 +177,7 @@
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
 
     .silkHead{
@@ -232,6 +240,7 @@
       background: var(--paper);
       color: var(--ink);
       padding: clamp(16px, 4vw, 22px);
+      forced-color-adjust:none;
     }
 
     .centerNote{
@@ -317,6 +326,7 @@
       background: rgba(255,255,255,.35);
       border:1px solid rgba(0,0,0,.05);
       position:relative;
+      forced-color-adjust:none;
     }
 
     .calendar td.empty{
@@ -361,6 +371,7 @@
       background: url("загруженное.jpeg") center/cover no-repeat;
       padding: clamp(16px, 4vw, 20px);
       color:#fff;
+      forced-color-adjust:none;
     }
 
     .redTop::after{
@@ -426,6 +437,7 @@
       background: var(--paper2);
       padding: clamp(16px, 4vw, 20px);
       color: var(--ink);
+      forced-color-adjust:none;
     }
 
     .paperBlock h4{
@@ -461,6 +473,12 @@
       border:1px solid rgba(0,0,0,.18);
       box-shadow: 0 8px 16px rgba(0,0,0,.10);
       flex: 0 0 auto;
+      -webkit-appearance:none;
+      appearance:none;
+      forced-color-adjust:none;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+      background-clip:padding-box;
     }
 
     .detailsList{
@@ -477,6 +495,7 @@
       color: rgba(36,29,29,.86);
       font-size: clamp(17px, 3.8vw, 19px);
       line-height:1.2;
+      forced-color-adjust:none;
     }
 
     .detailCard b{
@@ -509,6 +528,7 @@
       width:100%;
       min-height:52px;
       text-align:center;
+      forced-color-adjust:none;
     }
 
     .btn:hover{
@@ -546,7 +566,6 @@
       text-wrap:balance;
     }
 
-    /* very small phones */
     @media (max-width: 380px){
       .wrap{
         width:min(var(--container), calc(100vw - 14px));
@@ -577,7 +596,6 @@
       }
     }
 
-    /* phones / small tablets */
     @media (min-width: 481px){
       .btn{
         width:auto;
@@ -585,7 +603,6 @@
       }
     }
 
-    /* tablets */
     @media (min-width: 768px){
       .wrap{
         width:min(var(--container), calc(100vw - 40px));
@@ -610,7 +627,6 @@
       }
     }
 
-    /* laptops / desktops */
     @media (min-width: 1024px){
       body::before{
         filter: blur(12px) saturate(1.05) contrast(1.05);
@@ -626,7 +642,6 @@
       }
     }
 
-    /* reduce expensive effects on mobile if needed */
     @media (max-width: 767px){
       body::before{
         filter: blur(8px) saturate(1.02) contrast(1.02);
@@ -635,10 +650,10 @@
       .phone,
       .shot{
         backdrop-filter:none;
+        -webkit-backdrop-filter:none;
       }
     }
 
-    /* accessibility */
     @media (prefers-reduced-motion: reduce){
       html{
         scroll-behavior:auto;
@@ -776,14 +791,14 @@
               <p>Нам будет очень приятно, если вы поддержите цвета вечера.</p>
 
               <div class="swatches" aria-label="Палитра дресс-кода">
-                <span class="swatch" style="background:var(--dc1)"></span>
-                <span class="swatch" style="background:var(--dc2)"></span>
-                <span class="swatch" style="background:var(--dc4)"></span>
-                <span class="swatch" style="background:var(--dc5)"></span>
-                <span class="swatch" style="background:var(--dc6)"></span>
-                <span class="swatch" style="background:var(--dc7)"></span>
-                <span class="swatch" style="background:var(--dc8)"></span>
-                <span class="swatch" style="background:var(--dc9)"></span>
+                <span class="swatch" style="background:#e7d0bf"></span>
+                <span class="swatch" style="background:#cbceb8"></span>
+                <span class="swatch" style="background:#d3ad9c"></span>
+                <span class="swatch" style="background:#ad7c62"></span>
+                <span class="swatch" style="background:#677266"></span>
+                <span class="swatch" style="background:#414b44"></span>
+                <span class="swatch" style="background:#e7c3c6"></span>
+                <span class="swatch" style="background:#bcd3e6"></span>
               </div>
 
               <div class="detailsList">
