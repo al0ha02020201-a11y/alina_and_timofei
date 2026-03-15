@@ -125,6 +125,18 @@
       flex-shrink:0;
     }
 
+    .swatchesSvg{
+    display:flex;
+    justify-content:center;
+    margin-top:12px;
+  }
+
+    .swatchesSvg svg{
+    width:min(320px, 100%);
+    height:auto;
+    display:block;
+  }
+
     .dot{
       width:10px;
       height:10px;
@@ -790,15 +802,17 @@
               <h4>Дресс-код</h4>
               <p>Нам будет очень приятно, если вы поддержите цвета вечера.</p>
 
-              <div class="swatches" aria-label="Палитра дресс-кода">
-                <span class="swatch" style="background:#e7d0bf"></span>
-                <span class="swatch" style="background:#cbceb8"></span>
-                <span class="swatch" style="background:#d3ad9c"></span>
-                <span class="swatch" style="background:#ad7c62"></span>
-                <span class="swatch" style="background:#677266"></span>
-                <span class="swatch" style="background:#414b44"></span>
-                <span class="swatch" style="background:#e7c3c6"></span>
-                <span class="swatch" style="background:#bcd3e6"></span>
+              <div class="swatchesSvg" aria-label="Палитра дресс-кода">
+                <svg viewBox="0 0 320 44" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Цвета дресс-кода">
+                  <circle cx="20"  cy="22" r="14" fill="#e7d0bf" stroke="#b79f91" stroke-width="1.5"/>
+                  <circle cx="58"  cy="22" r="14" fill="#cbceb8" stroke="#a7aa95" stroke-width="1.5"/>
+                  <circle cx="96"  cy="22" r="14" fill="#d3ad9c" stroke="#b48d7b" stroke-width="1.5"/>
+                  <circle cx="134" cy="22" r="14" fill="#ad7c62" stroke="#8d624b" stroke-width="1.5"/>
+                  <circle cx="172" cy="22" r="14" fill="#677266" stroke="#556053" stroke-width="1.5"/>
+                  <circle cx="210" cy="22" r="14" fill="#414b44" stroke="#313932" stroke-width="1.5"/>
+                  <circle cx="248" cy="22" r="14" fill="#e7c3c6" stroke="#c49ea2" stroke-width="1.5"/>
+                  <circle cx="286" cy="22" r="14" fill="#bcd3e6" stroke="#9db7cc" stroke-width="1.5"/>
+                </svg>
               </div>
 
               <div class="detailsList">
